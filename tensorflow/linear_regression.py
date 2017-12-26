@@ -33,11 +33,11 @@ b = tf.Variable(rng.randn(), name="bias")
 activation = tf.add(tf.multiply(X, W), b)
 
 # Minimize the squared errors
-cost = tf.reduce_sum(tf.pow(activation-Y, 2))/(2*n_samples) #L2 loss
+cost = tf.reduce_sum(tf.pow(activation - Y, 2)) / ( 2 * n_samples) #L2 loss
 optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost) #Gradient descent
 
 # Initializing the variables
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 
 # Launch the graph
 with tf.Session() as sess:
@@ -47,7 +47,7 @@ with tf.Session() as sess:
     for epoch in range(training_epochs):
         for (x, y) in zip(train_X, train_Y):
             sess.run(optimizer, feed_dict={X: x, Y: y})
-
+    
         #Display logs per epoch step
         if epoch % display_step == 0:
             print("Epoch:", '%04d' % (epoch+1), "cost=", \
@@ -56,7 +56,7 @@ with tf.Session() as sess:
 
     print("Optimization Finished!")
     print("cost=", sess.run(cost, feed_dict={X: train_X, Y: train_Y}), \
-          "W=", sess.run(W), "b=", sess.run(b))
+        "W=", sess.run(W), "b=", sess.run(b))
 
     #Graphic display
     plt.plot(train_X, train_Y, 'ro', label='Original data')

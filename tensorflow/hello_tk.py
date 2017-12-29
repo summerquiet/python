@@ -1,11 +1,21 @@
 #! /usr/bin/env python3
 # _*_ coding: utf-8 _*_
 
-from tkinter import *
+'''
+A simple script to check tkinter install successfully
+'''
 
-root = Tk()
-w = Label(root, text="Hello, world!")
-w.pack()
-root.mainloop()
+from tkinter import Tk
+from tkinter import Label
+
+def main():
+    '''main function'''
+    root = Tk()
+    window = Label(root, text="Hello, world!")
+    window.pack()
+    root.mainloop()
+
+if __name__ == '__main__':
+    main()
 
 #EOF

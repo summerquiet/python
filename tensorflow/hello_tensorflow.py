@@ -1,15 +1,18 @@
-#! /usr/bin/env python3.5
+#! /usr/bin/env python3
 # _*_ coding: utf-8 _*_
 
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+'''
+This is a hello tensorflow script
+for test tensorflow installed successfully
+'''
 
+import os
 import tensorflow as tf
 
-'''
-Main function
-'''
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 def main():
+    '''main function'''
     hello = tf.constant('Hello, TensorFlow!')
     sess = tf.Session()
     out_str = str(sess.run(hello), encoding='utf-8')

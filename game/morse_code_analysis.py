@@ -55,195 +55,207 @@ Z       --..    11101110101
 '       /       000
 space   space   0
 '''
-CHAR_TO_MORSE_SIGN_TABLE = {
-    'A' : '.-',
-    'B' : '-...',
-    'C' : '-.-.',
-    'D' : '-..',
-    'E' : '.',
-    'F' : '..-.',
-    'G' : '--.',
-    'H' : '....',
-    'I' : '..',
-    'J' : '.---',
-    'K' : '-.-',
-    'L' : '.-..',
-    'M' : '--',
-    'N' : '-.',
-    'O' : '---',
-    'P' : '.--.',
-    'Q' : '--.-',
-    'R' : '.-.',
-    'S' : '...',
-    'T' : '-',
-    'U' : '..-',
-    'V' : '...-',
-    'W' : '.--',
-    'X' : '-..-',
-    'Y' : '-.--',
-    'Z' : '--..',
-    '1' : '.----',
-    '2' : '..---',
-    '3' : '...--',
-    '4' : '....-',
-    '5' : '.....',
-    '6' : '-....',
-    '7' : '--...',
-    '8' : '---..',
-    '9' : '----.',
-    '0' : '-----',
-    ' ' : ' '
-}
 
-SIGN_TO_MORSE_CODE_TABLE = {
-    '.' : '1',
-    '-' : '111',
-    '/' : '000',
-    ' ' : '0',
-}
+class MorseCodeAnalysis:
+    '''
+    Morse code analysis class
+    support:
+    1. string_to_morse_code
+    2. morse_code_to_string
+    '''
 
-MORSE_SIGN_TO_CHAR_TABLE = {
-    '.-'        : 'A',
-    '-...'      : 'B',
-    '-.-.'      : 'C',
-    '-..'       : 'D',
-    '.'         : 'E',
-    '..-.'      : 'F',
-    '--.'       : 'G',
-    '....'      : 'H',
-    '..'        : 'I',
-    '.---'      : 'J',
-    '-.-'       : 'K',
-    '.-..'      : 'L',
-    '--'        : 'M',
-    '-.'        : 'N',
-    '---'       : 'O',
-    '.--.'      : 'P',
-    '--.-'      : 'Q',
-    '.-.'       : 'R',
-    '...'       : 'S',
-    '-'         : 'T',
-    '..-'       : 'U',
-    '...-'      : 'V',
-    '.--'       : 'W',
-    '-..-'      : 'X',
-    '-.--'      : 'Y',
-    '--..'      : 'Z',
-    '.----'     : '1',
-    '..---'     : '2',
-    '...--'     : '3',
-    '....-'     : '4',
-    '.....'     : '5',
-    '-....'     : '6',
-    '--...'     : '7',
-    '---..'     : '8',
-    '----.'     : '9',
-    '-----'     : '0',
-    ' '         : ' '
-}
+    @classmethod
+    def string_to_morse_code(cls, in_string):
+        '''Convert string to morse code'''
+        return cls.__sign_to_code(cls, cls.__str_to_sign(cls, in_string))
 
-def string_to_morse_code(in_string):
-    '''Convert string to morse code'''
-    return sign_to_code(str_to_sign(in_string))
+    @classmethod
+    def morse_code_to_string(cls, in_code):
+        '''Convert morse code to string'''
+        return cls.__sign_to_str(cls, cls.__code_to_sign(cls, in_code))
 
-def morse_code_to_string(in_code):
-    '''Convert morse code to string'''
-    return sign_to_str(code_to_sign(in_code))
+    __CHAR_TO_MORSE_SIGN_TABLE = {
+        'A' : '.-',
+        'B' : '-...',
+        'C' : '-.-.',
+        'D' : '-..',
+        'E' : '.',
+        'F' : '..-.',
+        'G' : '--.',
+        'H' : '....',
+        'I' : '..',
+        'J' : '.---',
+        'K' : '-.-',
+        'L' : '.-..',
+        'M' : '--',
+        'N' : '-.',
+        'O' : '---',
+        'P' : '.--.',
+        'Q' : '--.-',
+        'R' : '.-.',
+        'S' : '...',
+        'T' : '-',
+        'U' : '..-',
+        'V' : '...-',
+        'W' : '.--',
+        'X' : '-..-',
+        'Y' : '-.--',
+        'Z' : '--..',
+        '1' : '.----',
+        '2' : '..---',
+        '3' : '...--',
+        '4' : '....-',
+        '5' : '.....',
+        '6' : '-....',
+        '7' : '--...',
+        '8' : '---..',
+        '9' : '----.',
+        '0' : '-----',
+        ' ' : ' '
+    }
 
-def str_to_sign(in_str):
-    '''Convert from a string to morse sign'''
-    in_upper = in_str.upper()
-    step = 0
-    out_morse = ''
+    __SIGN_TO_MORSE_CODE_TABLE = {
+        '.' : '1',
+        '-' : '111',
+        '/' : '000',
+        ' ' : '0',
+    }
 
-    while step < len(in_upper) - 1:
-        if in_upper[step] in CHAR_TO_MORSE_SIGN_TABLE:
-            out_morse += CHAR_TO_MORSE_SIGN_TABLE[in_upper[step]] + '/'
-        step += 1
+    __MORSE_SIGN_TO_CHAR_TABLE = {
+        '.-'        : 'A',
+        '-...'      : 'B',
+        '-.-.'      : 'C',
+        '-..'       : 'D',
+        '.'         : 'E',
+        '..-.'      : 'F',
+        '--.'       : 'G',
+        '....'      : 'H',
+        '..'        : 'I',
+        '.---'      : 'J',
+        '-.-'       : 'K',
+        '.-..'      : 'L',
+        '--'        : 'M',
+        '-.'        : 'N',
+        '---'       : 'O',
+        '.--.'      : 'P',
+        '--.-'      : 'Q',
+        '.-.'       : 'R',
+        '...'       : 'S',
+        '-'         : 'T',
+        '..-'       : 'U',
+        '...-'      : 'V',
+        '.--'       : 'W',
+        '-..-'      : 'X',
+        '-.--'      : 'Y',
+        '--..'      : 'Z',
+        '.----'     : '1',
+        '..---'     : '2',
+        '...--'     : '3',
+        '....-'     : '4',
+        '.....'     : '5',
+        '-....'     : '6',
+        '--...'     : '7',
+        '---..'     : '8',
+        '----.'     : '9',
+        '-----'     : '0',
+        ' '         : ' '
+    }
 
-    if step != 0:
-        if in_upper[step] in CHAR_TO_MORSE_SIGN_TABLE:
-            out_morse += CHAR_TO_MORSE_SIGN_TABLE[in_upper[step]]
+    def __str_to_sign(self, in_str):
+        '''Convert from a string to morse sign'''
+        in_upper = in_str.upper()
+        step = 0
+        out_morse = ''
 
-    return out_morse
+        while step < len(in_upper) - 1:
+            if in_upper[step] in self.__CHAR_TO_MORSE_SIGN_TABLE:
+                out_morse += self.__CHAR_TO_MORSE_SIGN_TABLE[in_upper[step]] + '/'
+            step += 1
 
-def sign_to_code(in_sign):
-    '''Convert from a morse sign to morse code'''
-    sign_table = ['.', '-']
-    step = 0
-    out_code = ''
+        if step != 0:
+            if in_upper[step] in self.__CHAR_TO_MORSE_SIGN_TABLE:
+                out_morse += self.__CHAR_TO_MORSE_SIGN_TABLE[in_upper[step]]
 
-    while step < len(in_sign) - 1:
-        if in_sign[step] in sign_table and in_sign[step + 1] in sign_table:
-            if in_sign[step] in SIGN_TO_MORSE_CODE_TABLE:
-                out_code += SIGN_TO_MORSE_CODE_TABLE[in_sign[step]] + '0'
-        else:
-            if in_sign[step] in SIGN_TO_MORSE_CODE_TABLE:
-                out_code += SIGN_TO_MORSE_CODE_TABLE[in_sign[step]]
-        step += 1
+        return out_morse
 
-    if step != 0:
-        if in_sign[step] in SIGN_TO_MORSE_CODE_TABLE:
-            out_code += SIGN_TO_MORSE_CODE_TABLE[in_sign[step]]
+    def __sign_to_code(self, in_sign):
+        '''Convert from a morse sign to morse code'''
+        sign_table = ['.', '-']
+        step = 0
+        out_code = ''
 
-    return out_code
-
-def code_to_sign(in_code):
-    '''Analysis morse code to sign'''
-    out_sign = ''
-    step = 0
-    stack = ''
-
-    while step < len(in_code):
-        if in_code[step] == '0':
-            if stack == '111':
-                out_sign += '-'
-                stack = '0'
-            elif stack == '1':
-                out_sign += '.'
-                stack = '0'
-            elif stack == '00':
-                out_sign += '/'
-                stack = ''
-            elif stack == '' and out_sign[len(out_sign) -1] == '/':
-                out_sign += ' '
+        while step < len(in_sign) - 1:
+            if in_sign[step] in sign_table and in_sign[step + 1] in sign_table:
+                if in_sign[step] in self.__SIGN_TO_MORSE_CODE_TABLE:
+                    out_code += self.__SIGN_TO_MORSE_CODE_TABLE[in_sign[step]] + '0'
             else:
+                if in_sign[step] in self.__SIGN_TO_MORSE_CODE_TABLE:
+                    out_code += self.__SIGN_TO_MORSE_CODE_TABLE[in_sign[step]]
+            step += 1
+
+        if step != 0:
+            if in_sign[step] in self.__SIGN_TO_MORSE_CODE_TABLE:
+                out_code += self.__SIGN_TO_MORSE_CODE_TABLE[in_sign[step]]
+
+        return out_code
+
+    def __code_to_sign(self, in_code):
+        '''Analysis morse code to sign'''
+        out_sign = ''
+        step = 0
+        stack = ''
+
+        while step < len(in_code):
+            if in_code[step] == '0':
+                if stack == '111':
+                    out_sign += '-'
+                    stack = '0'
+                elif stack == '1':
+                    out_sign += '.'
+                    stack = '0'
+                elif stack == '00':
+                    out_sign += '/'
+                    stack = ''
+                elif stack == '' and out_sign[len(out_sign) -1] == '/':
+                    out_sign += ' '
+                else:
+                    stack += in_code[step]
+            else:
+                if stack == '0':
+                    stack = ''
+
                 stack += in_code[step]
-        else:
-            if stack == '0':
-                stack = ''
 
-            stack += in_code[step]
+            step += 1
 
-        step += 1
+        if stack == '111':
+            out_sign += '-'
+        elif stack == '1':
+            out_sign += '.'
 
-    if stack == '111':
-        out_sign += '-'
-    elif stack == '1':
-        out_sign += '.'
+        return out_sign
 
-    return out_sign
+    def __sign_to_str(self, in_sign):
+        '''Analysis morse sign to string'''
+        out_str = ''
+        step = 0
 
-def sign_to_str(in_sign):
-    '''Analysis morse sign to string'''
-    out_str = ''
-    step = 0
+        while step < len(in_sign):
+            old_step = step
+            try:
+                step = in_sign.index('/', old_step)
+                sub = in_sign[old_step:step]
+            except ValueError:
+                sub = in_sign[step:]
+                step = len(in_sign) - 1
 
-    while step < len(in_sign):
-        old_step = step
-        try:
-            step = in_sign.index('/', old_step)
-            sub = in_sign[old_step:step]
-        except ValueError:
-            sub = in_sign[step:]
-            step = len(in_sign) - 1
+            if sub in self.__MORSE_SIGN_TO_CHAR_TABLE:
+                out_str += self.__MORSE_SIGN_TO_CHAR_TABLE[sub]
 
-        if sub in MORSE_SIGN_TO_CHAR_TABLE:
-            out_str += MORSE_SIGN_TO_CHAR_TABLE[sub]
+            step += 1
 
-        step += 1
-
-    return out_str
+        return out_str
+#endof class morse_code_analysis:
 
 def main():
     ''' main function for test'''
@@ -257,17 +269,16 @@ def main():
     '''
     case1_str = 'woxiangni'
     print(case1_str)
-    case1_code = string_to_morse_code(case1_str)
+    case1_code = MorseCodeAnalysis.string_to_morse_code(case1_str)
     print(case1_code)
-    print(morse_code_to_string(case1_code))
+    print(MorseCodeAnalysis.morse_code_to_string(case1_code))
 
     case2_str = 'I miss you'
     print(case2_str)
-    case2_code = string_to_morse_code(case2_str)
+    case2_code = MorseCodeAnalysis.string_to_morse_code(case2_str)
     print(case2_code)
-    print(morse_code_to_string(case2_code))
+    print(MorseCodeAnalysis.morse_code_to_string(case2_code))
 
 if __name__ == '__main__':
     main()
-
 #EOF

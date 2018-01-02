@@ -121,46 +121,6 @@ class MorseCodeAnalysis:
         ' ' : '0',
     }
 
-    __MORSE_SIGN_TO_CHAR_TABLE = {
-        '.-'        : 'A',
-        '-...'      : 'B',
-        '-.-.'      : 'C',
-        '-..'       : 'D',
-        '.'         : 'E',
-        '..-.'      : 'F',
-        '--.'       : 'G',
-        '....'      : 'H',
-        '..'        : 'I',
-        '.---'      : 'J',
-        '-.-'       : 'K',
-        '.-..'      : 'L',
-        '--'        : 'M',
-        '-.'        : 'N',
-        '---'       : 'O',
-        '.--.'      : 'P',
-        '--.-'      : 'Q',
-        '.-.'       : 'R',
-        '...'       : 'S',
-        '-'         : 'T',
-        '..-'       : 'U',
-        '...-'      : 'V',
-        '.--'       : 'W',
-        '-..-'      : 'X',
-        '-.--'      : 'Y',
-        '--..'      : 'Z',
-        '.----'     : '1',
-        '..---'     : '2',
-        '...--'     : '3',
-        '....-'     : '4',
-        '.....'     : '5',
-        '-....'     : '6',
-        '--...'     : '7',
-        '---..'     : '8',
-        '----.'     : '9',
-        '-----'     : '0',
-        ' '         : ' '
-    }
-
     def __str_to_sign(self, in_str):
         '''Convert from a string to morse sign'''
         in_upper = in_str.upper()
@@ -240,6 +200,9 @@ class MorseCodeAnalysis:
         out_str = ''
         step = 0
 
+        morse_sign_to_char_table = dict((k, v) \
+            for [v, k] in self.__CHAR_TO_MORSE_SIGN_TABLE.items())
+
         while step < len(in_sign):
             old_step = step
             try:
@@ -249,8 +212,8 @@ class MorseCodeAnalysis:
                 sub = in_sign[step:]
                 step = len(in_sign) - 1
 
-            if sub in self.__MORSE_SIGN_TO_CHAR_TABLE:
-                out_str += self.__MORSE_SIGN_TO_CHAR_TABLE[sub]
+            if sub in morse_sign_to_char_table:
+                out_str += morse_sign_to_char_table[sub]
 
             step += 1
 

@@ -6,14 +6,20 @@ This is a Morse Code Analysis tool
 
 '''
 Morse Code
-摩斯电码
+摩斯电码:
 1. 一点的长度是1个单位
 2. 一划的长度是3个单位
 3. 在一个字母中点划的间隔是1个单位
 4. 字母和字母之间的间隔是3个单位
 5. 两个单词之间的间隔是7个单位
-'''
-'''
+
+case1:
+string: woxiangni
+morse:  *--/---/-**-/**/*-/-*/--*/-*/**
+case2:
+string: I miss you
+morse:  **/ /--/**/***/***/ /-*--/---/**-
+
 Switch table
 char    sign    code
 A       .-      10111
@@ -218,18 +224,11 @@ class MorseCodeAnalysis:
             step += 1
 
         return out_str
-#endof class morse_code_analysis:
+#end class morse_code_analysis:
 
 def main():
     ''' main function for test'''
-    '''
-    case1:
-    string: woxiangni
-    morse:  *--/---/-**-/**/*-/-*/--*/-*/**
-    case2:
-    string: I miss you
-    morse:  **/ /--/**/***/***/ /-*--/---/**-
-    '''
+
     case1_str = 'woxiangni'
     print(case1_str)
     case1_code = MorseCodeAnalysis.string_to_morse_code(case1_str)

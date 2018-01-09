@@ -54,6 +54,10 @@ def main():
         print(sys.argv[1] + " : File not found. Creating a new file")
 
     print(address_book)
+    for p in address_book.person:
+        print(p.name + ',' + str(p.id) + ',' + p.email)
+        for ph in p.phone:
+            print(ph.number, ph.type)
 
     try:
         prompt_for_address(address_book.person.add())

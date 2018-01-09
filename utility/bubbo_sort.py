@@ -4,6 +4,7 @@
 Bubbo Sort
 '''
 
+import time
 import numpy as np
 
 def bubbo_sort(sort_list):
@@ -30,11 +31,17 @@ def bubbo_sort(sort_list):
 
 def main():
     '''main function'''
-    test_list = np.random.random_integers(1, 100, 100)
+    test_list = np.random.random_integers(1, 100, size=100)
     print(test_list)
 
+    time_start = time.perf_counter()
+
     bubbo_sort(test_list)
+
+    time_end = time.perf_counter()
+
     print(test_list)
+    print(time_start, time_end, time_end - time_start)
 
 if __name__ == '__main__':
     main()

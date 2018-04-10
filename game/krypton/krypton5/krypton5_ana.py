@@ -2,17 +2,21 @@
 # _*_ coding: utf-8 _*_
 
 '''
-This is a decryption for krypton4
-Decrypt table
-NFDXEN
+This is a Analysis for krypton5
+File:
+found1
+found2
+found3
+krypton6
 '''
 
 import sys
+import re
 
 # Decrypt table
-Decypt_table = 'FREKEY'
+Decypt_table = 'KEYLENGTH'
 
-Alphabet_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ '
+Alphabet_table = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def main():
 
@@ -26,13 +30,13 @@ def main():
 
     #print(data)
 
-    str_in = str(data)
-    string = str()
-    for value in str_in:
-        if value not in ['[', ']', ' ', '\'']:
-            string += value
+    # Get string
+    str_in = str()
+    for char in str(data):
+        if char not in '[\' ]':
+            str_in += char
 
-    print(string)
+    print (str_in)
 
     # Create the alphabet dictionary
     alphabet_dict = dict()
@@ -46,8 +50,8 @@ def main():
 
     # Decrypt
     str_out = str()
-    for i in range(0, len(string)):
-        tmp_cnt = alphabet_dict[string[i]] - alphabet_dict[Decypt_table[i%6]]
+    for i in range(0, len(str_in)):
+        tmp_cnt = alphabet_dict[str_in[i]] - alphabet_dict[Decypt_table[i%len(Decypt_table)]]
         tmp_cnt = tmp_cnt % 26
         str_out += revers_dict[tmp_cnt]
 

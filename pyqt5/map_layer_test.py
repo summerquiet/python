@@ -1,6 +1,4 @@
 #-*- coding:UTF-8 -*-
-#实战PyQt5: 132-一个轻量级的地图应用
-#https://blog.csdn.net/seniorwizard/article/details/125556195
 
 import sys,math
 from PyQt5.QtCore import (Qt, pyqtSignal, QObject, QPoint, QPointF,
@@ -77,6 +75,8 @@ class MyMap(QObject):
         self._nam.setCache(cache)
         self._nam.finished.connect(self.handleNetworkData)
 
+        self._pixInfo = QPixmap(480, 300)
+
     #刷新
     def invalidate(self):
         if self.width <= 0 or self.height <= 0:
@@ -119,6 +119,13 @@ class MyMap(QObject):
                 box = self.tileRect(tp)
                 if rect.intersects(box):
                     p.drawPixmap(box, self._tilePixmaps.get(tp, self._emptyTile))
+        
+        _color = QColor(Qt.white)
+        _color.setAlphaF(0)
+        self._pixInfo.fill(_color)
+        painter = QPainter(self._pixInfo)
+        painter.setPen(Qt.blue)
+        painter.drawText(200, 200, "最上层，我们又绘制了一些文字")
 
     #平移
     def pan(self, delta):
@@ -228,6 +235,7 @@ class LightMaps(QWidget):
             p.fillRect(event.rect(), Qt.white)
             p.end()
 
+        p.drawPixmap(0, 0, self._normalMap._pixInfo)
 
 class DemoLightMap(QMainWindow):
     def __init__(self, parent=None):
@@ -241,6 +249,8 @@ class DemoLightMap(QMainWindow):
         self.lightMap = LightMaps(self)
         self.setCentralWidget(self.lightMap)
         self.lightMap.setFocus()
+
+        self.pix2 = QPixmap(self.size())
 
         self.initUi()
 

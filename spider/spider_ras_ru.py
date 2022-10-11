@@ -4,7 +4,6 @@ http://www.ras.ru/members/personalstaff1724/fullmembers.aspx?ml=0
 '''
 
 # 导入urllib库的urlopen函数
-from email import contentmanager
 from urllib.request import urlopen
 from bs4 import BeautifulSoup as bf
 import re
@@ -99,7 +98,7 @@ class ItemHtml():
                         m = re.search(reg, str(b))
                         if m:
                             print(m.group(0))
-                        
+
 
 class SubLists():
     def __init__(self, list_html):
@@ -142,7 +141,7 @@ class SubLists():
 class MainHtml():
     def __init__(self):
         self._url = "http://www.ras.ru/members/personalstaff1724/fullmembers.aspx?ml="
-        self._listCount = 1 #from 0 to 32
+        self._listCount = 33 #from 0 to 32
         self._html = None
 
     def dumpList(self, count):

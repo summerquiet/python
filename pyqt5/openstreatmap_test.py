@@ -94,14 +94,14 @@ class MyMap(QObject):
         ys = int(ty) - ya
         
         #左上角瓷砖的位置偏移量
-        self._offset = QPoint(xp - xa * TILE_DIM, yp - ya * TILE_DIM)
+        self._offset = QPoint(xp - int(xa * TILE_DIM), yp - int(ya * TILE_DIM))
         
         #最后一块瓷砖水平和垂直结束位置
         xe = int(tx) + (self.width - xp - 1) / TILE_DIM
         ye = int(ty) + (self.height - yp - 1) / TILE_DIM
         
         #构建整个地图平铺区域
-        self._tilesRect = QRect(xs, ys, xe - xs + 1, ye - ys + 1)
+        self._tilesRect = QRect(int(xs), int(ys), int(xe - xs + 1), int(ye - ys + 1))
 
         if self._url.isEmpty():
             self.download()

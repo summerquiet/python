@@ -114,7 +114,7 @@ class DemoDownloadFile(QDialog):
         self.btnDownload.setEnabled(False)
         self.httpRequestAborted = False
         self.startRequest(self.url)
-    
+
     #终止下载
     def cancelDownload(self):
         self.statusLabel.setText('下载被取消了.')   

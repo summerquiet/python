@@ -16,11 +16,19 @@
 
 ## learn
 
+## pyqt5
+
+使用pyqt5来进行UI开发用
+
 ### algorithm
 
 这个是跟着Bilibli上的视频进行python的算法学习
 
 ## sample
+
+## spider
+
+这个是用来学习和测试网络爬虫
 
 ## tensorflow
 
